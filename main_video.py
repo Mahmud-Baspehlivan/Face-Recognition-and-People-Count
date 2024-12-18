@@ -7,7 +7,13 @@ def main():
     # FaceRecDB sınıfını başlat
     face_rec = FaceRecDB()
     
-    face_rec.add_person("Mahmud", "images/mahmud.jpg")
+    # face_rec.add_person("Mahmud", "images/mahmud.jpg")
+    # face_rec.add_person("Osman", "images/osman.jpg")
+    # face_rec.add_person("Elon Musk", "images/Elon Musk.jpg")
+    # face_rec.add_person("Jeff Bezoz", "images/Jeff Bezoz.jpg")
+    # face_rec.add_person("Messi", "images/Messi.webp")
+    # face_rec.add_person("Ryan Reynolds", "images/Ryan Reynolds.jpg")
+    
     # Yinelenen kayıtları temizle
     face_rec.remove_duplicate_persons()
 
