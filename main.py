@@ -25,7 +25,7 @@ class SecuritySystem:
         self.exited_count = multiprocessing.Value('i', 0)
         self.tracked_people = {}
         self.lock = Lock()
-        self.roi_coordinates = (90, 200, 500, 230)
+        self.roi_coordinates = (100, 730, 650, 760)
         
         # YOLO ve SORT
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -34,7 +34,7 @@ class SecuritySystem:
 
     def face_recognition_process(self):
         """Yüz tanıma sistemi - Birinci kamera için"""
-        cap = cv2.VideoCapture("busfinal.mp4")  
+        cap = cv2.VideoCapture("guvenlik.mp4")  # Birinci kamera
 
         # self.face_rec.add_person("Mahmud", "images/mahmud.jpg")
         # self.face_rec.add_person("Osman", "images/osman.jpg")
@@ -42,6 +42,7 @@ class SecuritySystem:
         # self.face_rec.add_person("Jeff Bezoz", "images/Jeff Bezoz.jpg")
         # self.face_rec.add_person("Messi", "images/Messi.webp")
         # self.face_rec.add_person("Ryan Reynolds", "images/Ryan Reynolds.jpg")
+        # self.face_rec.add_person("Cemil Öz", "images/cemil öz.jpg")
         
         if not cap.isOpened():
             print("Hata: Face Recognition kamerası açılamadı!")
@@ -106,7 +107,7 @@ class SecuritySystem:
 
     def people_counting_process(self):
         """İnsan sayma sistemi - İkinci kamera için"""
-        cap = cv2.VideoCapture("busfinal.mp4")  # İkinci kamera
+        cap = cv2.VideoCapture("guvenlik.mp4")  # İkinci kamera
         if not cap.isOpened():
             print("Hata: People Counting kamerası açılamadı!")
             return
@@ -169,11 +170,11 @@ class SecuritySystem:
                             self.tracked_people[tracking_id]["last_y"] = (y1 + y2)/2
 
             # Sayaçları göster
-            cv2.putText(frame, f"Entered: {self.entered_count.value}", (10, 30), 
+            cv2.putText(frame, f"Giren: {self.entered_count.value}", (10, 30), 
                        cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
-            cv2.putText(frame, f"Exited: {self.exited_count.value}", (10, 70), 
+            cv2.putText(frame, f"Cikan: {self.exited_count.value}", (10, 70), 
                        cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
-            cv2.putText(frame, f"Current Count: {self.entered_count.value - self.exited_count.value}", 
+            cv2.putText(frame, f"Mevcut Sayi: {self.entered_count.value - self.exited_count.value}", 
                        (10, 110), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
 
             cv2.imshow("People Counting System", frame)
