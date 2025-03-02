@@ -34,7 +34,7 @@ class SecuritySystem:
 
     def face_recognition_process(self):
         """Yüz tanıma sistemi - Birinci kamera için"""
-        cap = cv2.VideoCapture("guvenlik.mp4")  # Birinci kamera
+        cap = cv2.VideoCapture(0)  # Birinci kamera
 
         # self.face_rec.add_person("Mahmud", "images/mahmud.jpg")
         # self.face_rec.add_person("Osman", "images/osman.jpg")
